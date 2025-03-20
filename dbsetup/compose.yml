@@ -1,0 +1,23 @@
+#Edit the paths to the database, entrypoint and postgresql.conf according to your specifications
+services:
+
+  db:
+    image: postgres
+    restart: always
+    shm_size: 128mb
+    volumes:
+      - /path/to/database/:/var/lib/postgresql/data
+      - /path/to/entrypoint.d/:/docker-entrypoint-initdb.d
+      - type: bind
+        source: /path/to/conf/postgresql.conf
+        target: /etc/postgresql/postgresql.conf
+    command: -c config_file=/etc/postgresql/postgresql.conf
+    ports:
+      - name: psql
+        target: 5432
+        published: "5432"
+      
+    environment:
+      POSTGRES_PASSWORD: example
+      POSTGRES_HOST_AUTH_METHOD: trust
+      

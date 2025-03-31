@@ -12,9 +12,10 @@ Authors: Dominik Weikert, Adrian Köring, Christoph Steup
  - Waymo: [https://waymo.com/open/](https://waymo.com/open/) (Use the v1 version of the dataset)
  - Nuscenes/NuImages: [https://www.nuscenes.org/](https://www.nuscenes.org/)
  - CADCD: [http://cadcd.uwaterloo.ca/](http://cadcd.uwaterloo.ca/)
+
 Extract the datasets into the folder you determined as your dataset root in step 2.
 
-You should now be able to import the datasets into the database using the scripts in dataset_imports/.
+You should now be able to import the datasets into the database using the scripts in dataset_imports/. You can also create the expected table setup in the DB using the provided createtable.py file.
 
 
 ## Dataset Usage:

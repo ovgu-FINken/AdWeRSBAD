@@ -12,9 +12,10 @@ Authors: Dominik Weikert, Adrian Köring, Christoph Steup
  - Waymo: [https://waymo.com/open/](https://waymo.com/open/) (Use the v1 version of the dataset)
  - Nuscenes/NuImages: [https://www.nuscenes.org/](https://www.nuscenes.org/)
  - CADCD: [http://cadcd.uwaterloo.ca/](http://cadcd.uwaterloo.ca/)
+
 Extract the datasets into the folder you determined as your dataset root in step 2.
 
-You should now be able to import the datasets into the database using the scripts in dataset_imports/.
+You should now be able to import the datasets into the database using the scripts in dataset_imports/. You can also create the expected table setup in the DB using the provided createtable.py file.
 
 
 ## Dataset Usage:
@@ -40,7 +41,7 @@ Further specification of the requested data can be made using the other paramete
             location {str} -- location to restrict results to
 ```
 
-After construction, the dataset can then used with a pytorch Dataloader (or simply iterated through) to get all data conforming to the stated specifications. Some usage examples can be found in the test scripts located in test/ or in the jupyter notebook in examples/.
+After construction, the dataset can then used with a pytorch Dataloader (or simply iterated through) to get all data conforming to the stated specifications. Some usage examples can be found in the test scripts located in test/.
 
 
 

@@ -30,7 +30,7 @@ from .db_helpers import (
     setup_tables,
 )
 from .log import setup_logger
-from .scenarios import scenarios
+from .scenarios import adwersbad_scenarios
 
 __all__ = ["Adwersbad"]
 
@@ -154,9 +154,9 @@ class Adwersbad(IterableDataset):
             f"Adwersbad initialized with {self.splits=}, {self.fields=}, {self.datasets=}"
         )
         assert (
-            scenario in scenarios.keys()
-        ), f"{scenario} is not a valid scenario, valid scenarios: {[s.name for s in scenarios.values()]}"
-        self.scenario = scenarios[scenario]
+            scenario in adwersbad_scenarios.keys()
+        ), f"{scenario} is not a valid scenario, valid scenarios: {[s.name for s in adwersbad_scenarios.values()]}"
+        self.scenario = adwersbad_scenarios[scenario]
 
         for i, field in enumerate(self.fields):
             self.field_idxs.update({field: i})

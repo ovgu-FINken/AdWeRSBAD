@@ -110,10 +110,9 @@ scenarios = [
     TWILIGHTSNOW,
     ALL,
 ]
-
-scenarios = {}
+adwersbad_scenarios = {}
 for s in scenarios:
-    scenarios[s.name] = s
+    adwersbad_scenarios[s.name] = s
 
 
 if __name__ == "__main__":

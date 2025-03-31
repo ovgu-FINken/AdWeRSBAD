@@ -41,7 +41,7 @@ Further specification of the requested data can be made using the other paramete
             location {str} -- location to restrict results to
 ```
 
-After construction, the dataset can then used with a pytorch Dataloader (or simply iterated through) to get all data conforming to the stated specifications. Some usage examples can be found in the test scripts located in test/ or in the jupyter notebook in examples/.
+After construction, the dataset can then used with a pytorch Dataloader (or simply iterated through) to get all data conforming to the stated specifications. Some usage examples can be found in the test scripts located in test/.
 
 
 

@@ -35,6 +35,7 @@ def create_lidar_table():
             features_downsampled bytea,
             lidar_id text,
             lidar_parameters text,
+            lidar_vehicle_pose text,
             UNIQUE(weather_uid, lidar_id)
         )
         """
@@ -98,6 +99,7 @@ def create_camera_table():
             panoptic_labels bytea,
             camera_id text,
             camera_parameters text,
+            camera_vehicle_pose text,
             UNIQUE(weather_uid, camera_id)
         )
         """
@@ -155,8 +157,11 @@ def create_results_lidar_semantic_table():
         CREATE TABLE IF NOT EXISTS results_lidar_segmentation (
             lidar_uid int primary key,
             prediction bytea,
+            prediction_downsampled bytea,
             iou float4,
+            iou downsampled float4,
             ece float4,
+            ece downsampled float4,
             model text
         )
         """

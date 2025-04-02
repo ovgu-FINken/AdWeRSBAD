@@ -1,6 +1,7 @@
 mydatabase.ini
 myjobs.sh
 checkpoints/
+logs/
 slogs/
 
 __pycache__/

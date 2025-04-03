@@ -1,5 +1,3 @@
-import json
-from datetime import datetime
 from io import BytesIO
 from typing import Any, Dict, List, Tuple
 
@@ -281,10 +279,9 @@ def process_sample(sample: dict, split: str, conn: psycopg.Connection) -> None:
                 image_bytes = BytesIO(img_file.read())
             camera_name = "nuscenes_" + camera_data["channel"]
             cam_params = {
-                'type': 'nuscenes',
-                key: camera_data[key]
-                for key in ("intrinsic", "rotation", "translation")
+                key: camera_data[key] for key in ("intrinsic", "rotation", "translation")
             }
+            cam_params['type'] = 'nuscenes'
             image_uid = adwersbaddb.save_image_to_db(
                 conn,
                 weather_uid,

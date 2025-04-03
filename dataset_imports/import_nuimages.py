@@ -10,11 +10,11 @@ from nuimages.utils.utils import name_to_index_mapping
 from PIL import Image
 from tqdm.contrib.concurrent import process_map
 
-from adwersbad import config
 from adwersbad.class_helpers import (
     create_adwersbad_label_map,
     nuscenes_to_adwersbad_label_map,
 )
+from adwersbad.config import config
 from adwersbad.db_helpers import (
     get_connection,
     save_image_labels_to_db,
@@ -41,6 +41,12 @@ def get_image_and_segmentation(nuim, sample, label_map):
     sd_token = sample_data["token"]
     calib = nuim.get("calibrated_sensor", sample_data["calibrated_sensor_token"])
 
+    ego_pose_token = sample_data["ego_pose_token"]
+    ego_pose = nuim.get("ego_pose", ego_pose_token)
+    ego_rotation = ego_pose["rotation"]
+    ego_translation = ego_pose["translation"]
+    ego_pose = {"rotation": ego_rotation, "translation": ego_translation}
+
     quaternion = np.array(calib["rotation"]).tolist()
     translation = np.array(calib["translation"]).tolist()
     cam_intrinsic = calib["camera_intrinsic"]
@@ -63,7 +69,7 @@ def get_image_and_segmentation(nuim, sample, label_map):
         "distortion": cam_dist,
     }
     Image.fromarray(semantic).save(semantic_bytes, format="PNG")
-    return BytesIO(img_bytes), semantic_bytes, channel, cam_params
+    return BytesIO(img_bytes), semantic_bytes, channel, cam_params, ego_pose
 
 
 def get_metadata(nuim, sample):
@@ -93,7 +99,7 @@ def process_sample(sample):
     label_map = np.vectorize(label_map.get, otypes=[np.uint8])
     with get_connection(dbinfo) as conn:
         try:
-            im, seg, channel, cam_params = get_image_and_segmentation(
+            im, seg, channel, cam_params, ego_pose = get_image_and_segmentation(
                 nuim, sample, label_map
             )
             time, loc, lat, lon, wmo, weather_string, isday = get_metadata(nuim, sample)
@@ -114,7 +120,12 @@ def process_sample(sample):
                 )
             else:
                 image_uid = save_image_to_db(
-                    conn, weather_uid, im, channel, json.dumps(cam_params)
+                    conn,
+                    weather_uid,
+                    im,
+                    channel,
+                    json.dumps(cam_params),
+                    json.dumps(ego_pose),
                 )
                 save_image_labels_to_db(conn, image_uid, seg, False)
             conn.commit()
@@ -130,6 +141,7 @@ def process_samples():
     # for sample in tqdm.tqdm(nuim.sample):
 
 
+data_root = config(section="paths")["data_root"]
 dbinfo = "psycopg@local"
 for split in ["training", "validation"]:
     if split == "training":
@@ -139,9 +151,8 @@ for split in ["training", "validation"]:
     else:
         logger.error(f"invalid {split=}, aborting")
         exit()
-    # TODO: get from .ini
     nuim = NuImages(
-        dataroot="/adwersbaddata/datasets/nuimages",
+        dataroot=f"{data_root}/nuimages",
         version=version,
         verbose=True,
         lazy=False,

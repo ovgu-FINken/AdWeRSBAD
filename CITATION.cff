@@ -10,7 +10,7 @@ authors:
 title: "Adverse Weather Benchmarks and Dataset for Object Detection in Autonomous Driving"
 url: "https://github.com/ovgu-FINken/AdWeRSBAD"
 preferred-citation:
-  type: inproceedings
+  type: conference-paper
   authors:
   - family-names: "Weikert"
     given-names: "Dominik"

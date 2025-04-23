@@ -1,24 +1,31 @@
 cff-version: 1.2.0
-message: "If you use this software, please cite it as below."
+title: >-
+  Adverse Weather Benchmarks and Dataset for Object
+  Detection in Autonomous Driving
+message: 'If you use this software, please cite the article listed in the the perferred-citation.'
+type: software
 authors:
-- family-names: "Weikert"
-  given-names: "Dominik"
-- family-names: "Köring"
-  given-names: "Adrian"
-- family-names: "Steup"
-  given-names: "Christoph"
-title: "Adverse Weather Benchmarks and Dataset for Object Detection in Autonomous Driving"
-url: "https://github.com/ovgu-FINken/AdWeRSBAD"
+  - family-names: Weikert
+    given-names: Dominik
+  - family-names: Köring
+    given-names: Adrian
+  - family-names: Steup
+    given-names: Christoph
+url: 'https://github.com/ovgu-FINken/AdWeRSBAD'
 preferred-citation:
-  type: conference-paper
   authors:
-  - family-names: "Weikert"
-    given-names: "Dominik"
-  - family-names: "Köring"
-    given-names: "Adrian"
-  - family-names: "Steup"
-    given-names: "Christoph"
-  booktitle: "IEEE Symposium Series on Computational Intelligence (SSCI)"
+    - family-names: Weikert
+      given-names: Dominik
+    - family-names: Köring
+      given-names: Adrian
+    - family-names: Steup
+      given-names: Christoph
+  type: conference-paper
   year: 2025
+  title: Adverse Weather Benchmarks and Dataset for Object Detection in Autonomous Driving
+  conference: 
+    name: "2025 IEEE Symposium Series on Computational Intelligence (SSCI25)"
+    
+
 
 

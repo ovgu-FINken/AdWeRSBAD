@@ -1,14 +1,14 @@
 from configparser import ConfigParser, ExtendedInterpolation
 from pathlib import Path
 
-from pkg_resources import Requirement, resource_filename
+from pkg_resources import resource_filename
 
 __all__ = ["config"]
 
 
 def config(filename: str = "mydatabase.ini", section: str = "postgresql"):
     parser = ConfigParser(interpolation=ExtendedInterpolation())
-    filepath = Path(resource_filename(Requirement.parse("adwersbad"), filename))
+    filepath = Path(resource_filename("adwersbad", filename))
 
     if not filepath.exists():
         raise FileNotFoundError(f"Config {filepath} does not exist")

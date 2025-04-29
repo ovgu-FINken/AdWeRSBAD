@@ -9,4 +9,4 @@ __pycache__/
 *$py.class
 *.egg-info/
 *.egg
-
+.cache.sqlite

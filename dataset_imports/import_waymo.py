@@ -8,30 +8,23 @@ from io import BytesIO
 
 import numpy as np
 import psycopg
-import quaternion
 import tensorflow.compat.v1 as tf
 from file_helpers import get_file_paths
 from google import protobuf
 from PIL import Image
 from waymo_open_dataset import dataset_pb2 as open_dataset
-from waymo_open_dataset.utils import (
-    box_utils,
-    camera_segmentation_utils,
-    frame_utils,
-    transform_utils,
-)
+from waymo_open_dataset.utils import (box_utils, camera_segmentation_utils,
+                                      frame_utils, transform_utils)
 
 import adwersbad.db_helpers as adwersbaddb
-from adwersbad.class_helpers import (
-    chain_maps,
-    create_adwersbad_label_map,
-    waymo_to_adwersbad_label_map_bbox,
-    waymo_to_adwersbad_label_map_camera,
-    waymo_to_adwersbad_label_map_lidar,
-)
+from adwersbad.class_helpers import (chain_maps, create_adwersbad_label_map,
+                                     waymo_to_adwersbad_label_map_bbox,
+                                     waymo_to_adwersbad_label_map_camera,
+                                     waymo_to_adwersbad_label_map_lidar)
 from adwersbad.config import config
 from adwersbad.log import setup_logger
-from adwersbad.utils.transform import rotate, rotation_matrix_to_quaternion, translate
+from adwersbad.utils.transform import (rotate, rotation_matrix_to_quaternion,
+                                       translate)
 
 tf.logging.set_verbosity(tf.logging.ERROR)
 
@@ -87,26 +80,6 @@ def get_paths_for_split(split: str = "training") -> list[str]:
 # )
 
 logger = setup_logger("import_waymo")
-
-
-def heading_to_quaternion(heading: float) -> np.quaternion:
-    """
-    Convert a heading angle in radians to a quaternion representation.
-
-    This function calculates the quaternion corresponding to a rotation about the Z-axis.
-    The heading angle should be provided in radians.
-
-    Args:
-        heading (float): The heading(yaw) angle in radians.
-
-    Returns:
-        numpy.ndarray: A 1x4 numpy array representing the quaternion in the format [qw, qx, qy, qz]
-    """
-    q = quaternion.from_rotation_vector((0, 0, heading))
-    # qw = np.cos(heading / 2.0)
-    # qx = qy = 0.0
-    # qz = np.sin(heading / 2.0)
-    return q  # np.quaternion(qw, qx, qy, qz)
 
 
 def count_points_in_box(points, box):
@@ -550,8 +523,7 @@ if __name__ == "__main__":
     from adwersbad.class_helpers import (
         convert_waymo_label_to_adwersbad_label_camera,
         convert_waymo_label_to_adwersbad_label_lidar,
-        create_adwersbad_label_map,
-    )
+        create_adwersbad_label_map)
 
     dbinfo = "psycopg@local"
     filepaths = ""

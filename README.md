@@ -48,3 +48,14 @@ After construction, the dataset can then used with a pytorch Dataloader (or simp
 ## Weather Labeling Tool
 
 This repository includes a weather labeling tool for manually creating weather labels. Instructions for this will be added to the wiki following the SSCI25 conference.
+
+
+## References
+
+Waymo Open Dataset: [https://waymo.com/open/](https://waymo.com/open/)
+
+Nuscenes: [https://www.nuscenes.org/](https://www.nuscenes.org/)
+
+Canadian Adwerse Driving Conditions Dataset: [http://cadcd.uwaterloo.ca/](http://cadcd.uwaterloo.ca/)
+
+Open-meteo Weather Database: [https://open-meteo.com/](https://open-meteo.com/)

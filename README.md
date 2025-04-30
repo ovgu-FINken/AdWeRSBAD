@@ -6,8 +6,10 @@ Authors: Dominik Weikert, Adrian Köring, Christoph Steup
 ## General Setup:
 
 1. The Code provided in this repository requires a PostgreSQL database backend: https://www.postgresql.org/. You can also use a Docker to deploy Postgresql: https://hub.docker.com/_/postgres. A simple compose.yaml and configuration files can be found in the  dbestup folder of this repository.
-2. Copy database.ini to mydatabase.ini and adapt it to your needs. (e.g. fill in your postgresql username and set the project root as well as raw datasets root path correctly). The provided .ini file also containssome examples of database connection parameters.
-3. Install this package `pip3 install -e .` (Preferably into a virtual environment using a venv management tool of your choice). A PyPi Version of this package will be uploaded after further testing.
+2. Copy database.ini to mydatabase.ini and adapt it to your needs. (e.g. fill in your postgresql username and set the project root as well as raw datasets root path correctly). The provided .ini file also contains some examples of database connection parameters.
+3. Install this package `pip3 install .` (Preferably into a virtual environment using a venv management tool of your choice). A PyPi Version of this package will be uploaded after further testing.
+   - there are optional dependencies for the individual dataset imports, these can be installed via pip install .[dataset name] (e.g. pip install .[waymo])
+   - alternatively you can try installing [all], which contains all dependencies, but this is not guaranteed to work conflict-free. We have tested it using python 3.10.
 4. To actually use th AdWeRSBAD functionality, you need to obtain the datasets separately:
  - Waymo: [https://waymo.com/open/](https://waymo.com/open/) (Use the v1 version of the dataset)
  - Nuscenes/NuImages: [https://www.nuscenes.org/](https://www.nuscenes.org/)
